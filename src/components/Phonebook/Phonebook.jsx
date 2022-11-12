@@ -1,9 +1,11 @@
+import { useState } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ButtonAdd from 'components/ContactForm/ButtonAdd';
 import ContactForm from 'components/ContactForm/ContactForm';
 import InputName from 'components/ContactForm/InputName';
 import InputTel from 'components/ContactForm/InputTel';
 import { LabelContact } from 'components/ContactForm/LabelContact';
-import { useState } from 'react';
 
 export const Phonebook = ({ onSubmit }) => {
   const [name, setName] = useState('');
@@ -45,6 +47,6 @@ export const Phonebook = ({ onSubmit }) => {
     </>
   );
 };
-//Phonebook.propTypes = {
-//  onSubmit: PropTypes.func.isRequired,
-//};
+Phonebook.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
