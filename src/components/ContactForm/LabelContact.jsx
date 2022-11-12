@@ -1,4 +1,3 @@
-import React from 'react';
 import { P } from 'components/Style/Element.styled';
 import PropTypes from 'prop-types';
 

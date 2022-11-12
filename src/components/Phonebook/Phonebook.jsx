@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import React from 'react';
 import PropTypes from 'prop-types';
 import ButtonAdd from 'components/ContactForm/ButtonAdd';
 import ContactForm from 'components/ContactForm/ContactForm';
