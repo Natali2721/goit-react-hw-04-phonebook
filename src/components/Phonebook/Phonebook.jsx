@@ -3,45 +3,48 @@ import ContactForm from 'components/ContactForm/ContactForm';
 import InputName from 'components/ContactForm/InputName';
 import InputTel from 'components/ContactForm/InputTel';
 import { LabelContact } from 'components/ContactForm/LabelContact';
-import { Component } from 'react';
+import { useState } from 'react';
 
-class Phonebook extends Component {
-  state = {
-    name: '',
-    number: '',
-  };
+export const Phonebook = ({ onSubmit }) => {
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-  handleChange = e => {
+  const handleChange = e => {
     const { name, value } = e.currentTarget;
-    this.setState({ [name]: value });
+    if (name === 'name') {
+      setName(value);
+    }
+    if (name === 'number') {
+      setNumber(value);
+    }
   };
 
-  reset = () => {
-    this.setState({ name: '', number: '' });
+  const reset = () => {
+    setName('');
+    setNumber('');
   };
 
-  clickOnBtnAdd = e => {
+  const clickOnBtnAdd = e => {
     e.preventDefault();
-    this.props.onSubmit(this.state);
-    this.reset();
+    onSubmit({ name: name, number: number });
+    reset();
     // console.log(this.state);
   };
 
-  render() {
-    return (
-      <>
-        <ContactForm onSubmit={this.clickOnBtnAdd}>
-          <LabelContact title="Name">
-            <InputName value={this.state.name} onChange={this.handleChange} />
-          </LabelContact>
-          <LabelContact title="Number">
-            <InputTel value={this.state.number} onChange={this.handleChange} />
-          </LabelContact>
-          <ButtonAdd text="Add contact" />
-        </ContactForm>
-      </>
-    );
-  }
-}
-
-export default Phonebook;
+  return (
+    <>
+      <ContactForm onSubmit={clickOnBtnAdd}>
+        <LabelContact title="Name">
+          <InputName value={name} onChange={handleChange} />
+        </LabelContact>
+        <LabelContact title="Number">
+          <InputTel value={number} onChange={handleChange} />
+        </LabelContact>
+        <ButtonAdd text="Add contact" />
+      </ContactForm>
+    </>
+  );
+};
+//Phonebook.propTypes = {
+//  onSubmit: PropTypes.func.isRequired,
+//};
